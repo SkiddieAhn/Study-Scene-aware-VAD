@@ -79,7 +79,7 @@ Incidentally, the proposed method also achieved better performance even with the
 <details>
 <summary><b>Environments</b></summary>
 
-## Environments
+## Environment
 PyTorch >= 1.13.1  
 Python >= 3.8  
 sklearn  
