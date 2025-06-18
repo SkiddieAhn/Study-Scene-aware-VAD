@@ -12,7 +12,8 @@ Subsequently, I perform reconstruction-based training using a **Transformer-base
 ## Training method
 In this study, I adopt a **reconstruction-based approach**, one of the commonly used **One-Class Classification (OCC)** methods in VAD. This approach enables the computation of anomaly scores in a straightforward manner by measuring the **reconstruction error** between the input and the output.
 To equip the model with the ability to distinguish between different scenes, I additionally incorporate **contrastive learning**.
-The objective is to learn **scene-specific normal manifolds** such that, during testing, features from abnormal frames that are inconsistent with the current scene deviate from the learned manifolds. This design makes it more difficult for the decoder to reconstruct those abnormal inputs, thereby resulting in higher reconstruction errors.
+The objective is to learn **scene-specific normal manifolds** such that, during testing, features from **abnormal frames-particularly those containing scene-dependent abnormal objects—** deviate from the learned manifolds.
+This design makes it more difficult for the decoder to reconstruct those abnormal inputs, thereby resulting in higher reconstruction errors.
 
 <img src="https://github.com/user-attachments/assets/b7c18b8c-eafc-4c2a-afce-37f5b7090677" width="750"/>
 
