@@ -9,7 +9,7 @@ Subsequently, I perform reconstruction-based training using a **Transformer-base
 
 <img src="https://github.com/user-attachments/assets/2acf5983-ea46-4615-b451-77e641a9975f" width="750"/>
 
-## Method
+## Training method
 In this study, I adopt a **reconstruction-based approach**, one of the commonly used **One-Class Classification (OCC)** methods in VAD. This approach enables the computation of anomaly scores in a straightforward manner by measuring the **reconstruction error** between the input and the output.
 To equip the model with the ability to distinguish between different scenes, I additionally incorporate **contrastive learning**.
 The objective is to learn **scene-specific normal manifolds** such that, during testing, features from abnormal frames that are inconsistent with the current scene deviate from the learned manifolds. This design makes it more difficult for the decoder to reconstruct those abnormal inputs, thereby resulting in higher reconstruction errors.
@@ -17,6 +17,10 @@ The objective is to learn **scene-specific normal manifolds** such that, during 
 <img src="https://github.com/user-attachments/assets/b7c18b8c-eafc-4c2a-afce-37f5b7090677" width="750"/>
 
 ## Results
+<details>
+<summary><b>Quantitative comparison</b></summary>
+  
+## Quantitative  comparison
 To evaluate whether the model can effectively handle anomalies that vary depending on the scene, I utilize ```ShanghaiTech-SD```, a **scene-dependent dataset**. Details of the dataset can be found in the following paper [[Link](https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_A_New_Comprehensive_Benchmark_for_Semi-Supervised_Video_Anomaly_Detection_and_CVPR_2023_paper.pdf)].  
 Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **19.6% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
 
@@ -25,9 +29,12 @@ Experimental results show that our proposed model, which learns to distinguish b
 |:------------------------:|:-----------:|:-----------:|
 | Scene-agnostic  |reconstruction        |57.9%        |
 | **Scene-aware**   |**reconstruction + contrastive**        |**77.5%**        |
+</details>
 
-
-## Qualitative Evaluation
+<details>
+<summary><b>Qualitative  comparison</b></summary>
+  
+## Qualitative  comparison
 Scene1 is a general-purpose road where bicycles and motorcycles are allowed, while Scene2 and Scene3 are pedestrian-only areas.
 A **scene-agnostic model**, which does not take scene context into account, tends to assign **low anomaly scores** to scene-dependent anomalies such as a ```bicycle appearing in Scene2```.
 In contrast, the proposed **scene-aware model** gives **higher anomaly scores** in such cases, effectively detecting situations that don't fit the scene.
@@ -52,7 +59,10 @@ In contrast, the proposed **scene-aware model** gives **higher anomaly scores** 
 |-----------|------------------------------------------------------------------------|-------|-------|
 | ❌ | **motorcycle: abnormal**  | <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/9237603e-06a2-480e-9ee8-01098a26ed94" width="600"/>|
 | ✅ | **motorcycle: abnormal**| <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/7a8c49ef-bf43-4051-8577-ddd7ea3e71ec" width="600"/>|
+</details>
 
+<details>
+<summary><b>Visualization</b></summary>
 
 ## Visualization
 To effectively visualize the **normal manifolds** of the **scene-agnostic** and **scene-aware** methods, I trained both approaches using a ```Variational AutoEncoder (VAE)```.
@@ -62,5 +72,64 @@ Incidentally, the proposed method also achieved better performance even with the
 |     Scene-agnostic manifold                |Scene-aware manifold  |
 |:------------------------:|:-----------:|
 | <img src="https://github.com/user-attachments/assets/75a1fef8-4683-4d2a-bea6-1c01209e814d" width="450"/>| <img src="https://github.com/user-attachments/assets/94c34176-e198-4efb-9c4a-6ac576f4baf2" width="450"/>|
+</details>
 
+## Execution
+<details>
+<summary><b>Environments</b></summary>
 
+## Environments
+PyTorch >= 1.13.1  
+Python >= 3.8  
+sklearn  
+opencv  
+torchvision  
+transformers  
+git+https://github.com/openai/CLIP.git  
+Other common packages.
+</details>
+
+<details>
+<summary><b>Download</b></summary>
+  
+## Download
+Please move the **dataset (shanghai-sd)** into the ```data_root``` directory specified in ```config.py```.  
+The **features** and **weights** directories should be moved to the ```working directory```.
+|     Dataset    |  CLIP features    |   Weights    |  Train Log    | 
+|:------------------------:|:------------------------:|:------------------------:|:------------------------:|
+|[Google Drive](https://drive.google.com/file/d/1H5i-rBBlPZpk7Ix3TOR66rRY_2BtTMuD/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1R-wggWDWKF4usG6SoToUEretUTETba8r/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1ufs4JaGyS7jQWC2g473fMUux1rPWkT3L/view?usp=sharing)|[Google Colab](https://colab.research.google.com/drive/1xppcxRK-rifJsIV3jOT1J4IlspMKsW9v?usp=sharing)|
+</details>
+
+<details>
+<summary><b>Command</b></summary>
+  
+## Command
+For training, the ```segment length``` was set to **16**, and **10 videos were used per scene** for contrastive learning.  
+The total number of videos used in contrastive learning is calculated as ```scenes × videos```.  
+For example, if there are **4 scenes and 10 videos**, a total of **40 videos** are used.  
+For each anchor, **9 videos** are used as **positives** and **30 videos** are used as **negatives**.
+- feature extraction
+```bash
+python featuring.py --dataset=shanghai-sd --save_mode=training  # train data -> train features
+python featuring.py --dataset=shanghai-sd --save_mode=testing   # test data -> test features
+```
+- training
+```bash
+python train.py --dataset=shanghai-sd --training_mode=0  # reconstruction 
+python train.py --dataset=shanghai-sd --training_mode=1  # reconstruction + contrastive
+python train.py --dataset=shanghai-sd --training_mode=2  # reconstruction + contrastive + classifiaction 
+```
+- testing
+```bash
+python eval.py --dataset=shanghai-sd --trained_model={weight_file_name} # micro auc calculation 
+python eval.py --dataset=shanghai-sd --trained_model={weight_file_name} --visualization=True  # + (anomaly score, t-sne) visualization
+```
+</details>
+
+## Note
+I conducted this study with reference to ```SupCon(NIPS'2020)``` and ```HSC(CVPR'2023)```, and was also inspired by ```Cao et al.(CVPR'2023)```.  
+I sincerely appreciate the contributions of the authors of these three papers.
+
+- **SupCon (NIPS'2020)** [[paper](https://arxiv.org/pdf/2004.11362)]
+- **HSC (CVPR'2023)** [[paper](https://arxiv.org/pdf/2303.13051)]
+- **Cao et al. (CVPR'2023)** [[paper](https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_A_New_Comprehensive_Benchmark_for_Semi-Supervised_Video_Anomaly_Detection_and_CVPR_2023_paper.pdf)]
