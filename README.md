@@ -21,7 +21,7 @@ To evaluate whether the model can effectively handle anomalies that vary dependi
 Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **19.6% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
 
 
-|     Method                  |Training  |ShanghaiTech-SD    |
+|     Method                  |Training  |AUC    |
 |:------------------------:|:-----------:|:-----------:|
 | Scene-agnostic  |reconstruction        |57.9%        |
 | **Scene-aware**   |**reconstruction + contrastive**        |**77.5%**        |
