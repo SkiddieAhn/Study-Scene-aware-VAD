@@ -35,7 +35,7 @@ Experimental results show that our proposed model, which learns to distinguish b
 <summary><b>Qualitative  comparison</b></summary>
   
 ## Qualitative  comparison
-Scene1 is a general-purpose road where bicycles and motorcycles are allowed, while Scene2 and Scene3 are pedestrian-only areas.
+```Scene1``` is a **general-purpose road where bicycles and motorcycles are allowed**, while ```Scene2``` and ```Scene3``` are **pedestrian-only areas**.
 A **scene-agnostic model**, which does not take scene context into account, tends to assign **low anomaly scores** to scene-dependent anomalies such as a ```bicycle appearing in Scene2```.
 In contrast, the proposed **scene-aware model** gives **higher anomaly scores** in such cases, effectively detecting situations that don't fit the scene.
 
