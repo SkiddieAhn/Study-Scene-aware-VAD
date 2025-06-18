@@ -2,8 +2,8 @@
 Since the **definition of normal and abnormal events in video anomaly detection (VAD) can vary depending on the scene, it is crucial to design a model that is aware of scene information**. For instance, a car is considered normal on a road but abnormal on a pedestrian walkway. If a model is trained solely on normal data without distinguishing between different scenes, it may incorrectly classify ```scene-dependent abnormal objects``` (e.g., a car on a pedestrian) as normal during testing. To address this issue, I propose a simple yet effective **scene-aware VAD method**.
 
 ## Overview
-To perform anomaly detection at the video segment level, segments from various scenes are utilized during training.
-To enable fast training with a lightweight model, I operate at the feature level instead of using raw frames.  
+To perform anomaly detection at the video segment level, segments from various scenes are utilized during training.  
+**To enable fast training with a lightweight model, I operate at the feature level instead of using raw frames.**  
 For this purpose, I employ the **CLIP Image Encoder** based on ```ViT-L/14```, which extracts fine-grained semantic information from individual frames.
 Subsequently, I perform reconstruction-based training using a **Transformer-based AutoEncoder** to model temporal dynamics.
 
