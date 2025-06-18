@@ -2,10 +2,10 @@
 Scene aware VAD using Reconstruction-based OCC method
 
 ## Model Architecture
-<img src="https://github.com/user-attachments/assets/2acf5983-ea46-4615-b451-77e641a9975f" width="700"/>
+<img src="https://github.com/user-attachments/assets/2acf5983-ea46-4615-b451-77e641a9975f" width="750"/>
 
 ## Training method
-<img src="https://github.com/user-attachments/assets/b7c18b8c-eafc-4c2a-afce-37f5b7090677" width="700"/>
+<img src="https://github.com/user-attachments/assets/b7c18b8c-eafc-4c2a-afce-37f5b7090677" width="750"/>
 
 ## Results
 |     AUC                  |Training method   |Shanghai-SD    |
