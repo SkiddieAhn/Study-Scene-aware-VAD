@@ -129,7 +129,7 @@ python eval.py --dataset=shanghai-sd --trained_model={weight_file_name} --visual
 ```
 </details>
 
-## Acknowledgements
+## Acknowledgement
 I conducted this study with reference to ```SupCon(NIPS'2020)``` and ```HSC(CVPR'2023)```, and was also inspired by ```Cao et al.(CVPR'2023)```.  
 I sincerely appreciate the contributions of the authors of these three papers.
 
