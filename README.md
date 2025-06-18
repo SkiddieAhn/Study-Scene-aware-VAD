@@ -67,7 +67,7 @@ In contrast, the proposed **scene-aware model** gives **higher anomaly scores** 
 
 ## Visualization
 To effectively visualize the **normal manifolds** of the **scene-agnostic** and **scene-aware** methods, I trained both approaches using a ```Variational AutoEncoder (VAE)```.
-While both methods produce features that follow a **standard normal distribution**, the proposed scene-aware method additionally shows clear **separation by scene**.  
+While both methods produce features that follow a **normal distribution**, the proposed scene-aware method additionally shows clear **separation by scene**.  
 Incidentally, the proposed method also achieved better performance even with the VAE. However, for more stable training, I used an AutoEncoder, which resulted in even higher performance.
 
 |     Scene-agnostic manifold                |Scene-aware manifold  |
