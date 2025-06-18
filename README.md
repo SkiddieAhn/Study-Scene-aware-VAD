@@ -26,6 +26,17 @@ Experimental results show that our proposed model, which learns to distinguish b
 | Scene-agnostic method  |reconstruction        |57.9%        |
 | **Scene-aware method**   |**reconstruction + contrastive**        |**77.5%**        |
 
+
+## Visualization
+To effectively visualize the **normal manifolds** of the **scene-agnostic** and **scene-aware** methods, I trained both approaches using a ```Variational AutoEncoder (VAE)```.
+While both methods produce features that follow a **standard normal distribution**, the proposed scene-aware method additionally shows clear **separation by scene**.
+Incidentally, the proposed method also achieved better performance even with the VAE. However, for more stable training, I used an AutoEncoder (AE), which resulted in even higher performance.
+
+|     Scene-agnostic manifold                |Scene-aware manifold  |
+|:------------------------:|:-----------:|
+| <img src="https://github.com/user-attachments/assets/75a1fef8-4683-4d2a-bea6-1c01209e814d" width="450"/>| <img src="https://github.com/user-attachments/assets/94c34176-e198-4efb-9c4a-6ac576f4baf2" width="450"/>|
+
+
 ## Qualitative Evaluation
 Scene1 is a general-purpose road where bicycles and motorcycles are allowed, while Scene2 and Scene3 are pedestrian-only areas.
 A **scene-agnostic model**, which does not take scene context into account, tends to assign **low anomaly scores** to scene-dependent anomalies such as a ```bicycle appearing in Scene2```.
