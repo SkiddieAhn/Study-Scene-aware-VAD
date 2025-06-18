@@ -83,8 +83,9 @@ PyTorch >= 1.13.1
 Python >= 3.8  
 sklearn  
 opencv  
-torchvision  
-transformers  
+torchvision    
+h5py  
+fastprogress  
 git+https://github.com/openai/CLIP.git  
 Other common packages.
 </details>
