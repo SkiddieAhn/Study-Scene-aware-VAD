@@ -83,7 +83,8 @@ PyTorch >= 1.13.1
 Python >= 3.8  
 sklearn  
 opencv  
-torchvision    
+torchvision  
+wandb  
 h5py  
 fastprogress  
 git+https://github.com/openai/CLIP.git  
