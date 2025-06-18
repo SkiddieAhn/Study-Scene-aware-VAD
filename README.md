@@ -77,7 +77,7 @@ Incidentally, the proposed method also achieved better performance even with the
 
 ## Execution
 <details>
-<summary><b>Environments</b></summary>
+<summary><b>Environment</b></summary>
 
 ## Environment
 PyTorch >= 1.13.1  
