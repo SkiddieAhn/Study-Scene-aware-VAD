@@ -17,11 +17,11 @@ The objective is to learn **scene-specific normal manifolds** such that, during 
 <img src="https://github.com/user-attachments/assets/b7c18b8c-eafc-4c2a-afce-37f5b7090677" width="750"/>
 
 ## Results
-To evaluate whether the model can effectively handle anomalies that vary depending on the scene, I utilize ```Shanghai-SD```, a **scene-dependent dataset**. Details of the dataset can be found in the following paper [[Link](https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_A_New_Comprehensive_Benchmark_for_Semi-Supervised_Video_Anomaly_Detection_and_CVPR_2023_paper.pdf)].  
+To evaluate whether the model can effectively handle anomalies that vary depending on the scene, I utilize ```ShanghaiTech-SD```, a **scene-dependent dataset**. Details of the dataset can be found in the following paper [[Link](https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_A_New_Comprehensive_Benchmark_for_Semi-Supervised_Video_Anomaly_Detection_and_CVPR_2023_paper.pdf)].  
 Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **19.6% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
 
 
-|     AUC                  |Training method   |Shanghai-SD    |
+|     AUC                  |Training method   |ShanghaiTech-SD    |
 |:------------------------:|:-----------:|:-----------:|
 | Scene-agnostic method  |reconstruction        |57.9%        |
 | **Scene-aware method**   |**reconstruction + contrastive**        |**77.5%**        |
