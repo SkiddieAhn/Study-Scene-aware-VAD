@@ -10,14 +10,14 @@ Scene aware VAD using Reconstruction-based OCC method
 | ❌ | **bicycle: normal**  | <img src="https://github.com/user-attachments/assets/bf046ade-09e0-4320-b53e-7946200526cf" width="400"/>  |<img src="https://github.com/user-attachments/assets/0c9566fb-205c-41d7-a5d0-4384b87bca8a" width="500"/>|
 | ✅ | **bicycle: normal**| <img src="https://github.com/user-attachments/assets/bf046ade-09e0-4320-b53e-7946200526cf" width="400"/>  |<img src="https://github.com/user-attachments/assets/d48304bb-7b72-4ebb-a5a4-6aa8004449c7" width="500"/>|
 
-- **Scene 2 (normal: walking, standing)**
+- **Scene 2 (normal: walking, standing, sitting)**
   
 | Scene-aware     | Status                                                                | frame (130th) |Anomaly Score |
 |-----------|------------------------------------------------------------------------|-------|-------|
 | ❌ | **bicycle: abnormal**  | <img src="https://github.com/user-attachments/assets/69abefff-0712-4e10-848c-8266e3a38348" width="400"/>  |<img src="https://github.com/user-attachments/assets/0108f066-402d-4eda-b0fe-c3815bd86ddc" width="500"/>|
 | ✅ | **bicycle: abnormal**| <img src="https://github.com/user-attachments/assets/69abefff-0712-4e10-848c-8266e3a38348" width="400"/>  |<img src="https://github.com/user-attachments/assets/dd634e8f-6ad8-4db8-bc3d-1b09ee435cc9" width="500"/>|
 
-- **Scene 3 (normal: walking, standing)**
+- **Scene 3 (normal: walking, standing, sitting)**
   
 | Scene-aware     | Status                                                                | frame (160th) |Anomaly Score |
 |-----------|------------------------------------------------------------------------|-------|-------|
