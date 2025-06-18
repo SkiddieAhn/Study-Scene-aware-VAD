@@ -139,8 +139,9 @@ class Label_loader:
         self.cfg = cfg
 
     def __call__(self):
-        gt = self.load_shanghai_sd()
-        return gt
+        if self.cfg.dataset == 'shanghai-sd':
+            gt = self.load_shanghai_sd()
+            return gt
 
 
     def load_shanghai_sd(self):
