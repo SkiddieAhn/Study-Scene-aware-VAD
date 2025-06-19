@@ -15,7 +15,7 @@ To equip the model with the ability to distinguish between different scenes, I a
 The objective is to learn **scene-specific normal manifolds** such that, during testing, features from **abnormal frames-particularly those containing scene-dependent abnormal objects—** deviate from the learned manifolds.
 This design makes it more difficult for the decoder to reconstruct those abnormal inputs, thereby resulting in higher reconstruction errors.
 
-<img src="https://github.com/user-attachments/assets/b7c18b8c-eafc-4c2a-afce-37f5b7090677" width="750"/>
+<img src="https://github.com/user-attachments/assets/f9910f79-21d5-49d0-addf-c59ca3dca98f" width="750"/>
 
 ## Results
 <details>
