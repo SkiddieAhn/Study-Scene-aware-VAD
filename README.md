@@ -23,13 +23,13 @@ This design makes it more difficult for the decoder to reconstruct those abnorma
   
 ## Quantitative  comparison
 To evaluate whether the model can effectively handle anomalies that vary depending on the scene, I utilize ```ShanghaiTech-SD```, a **scene-dependent dataset**. Details of the dataset can be found in the following paper [[Link](https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_A_New_Comprehensive_Benchmark_for_Semi-Supervised_Video_Anomaly_Detection_and_CVPR_2023_paper.pdf)].  
-Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **19.6% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
+Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **18.7% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
 
 
 |     Method                  |Training  |AUC    |
 |:------------------------:|:-----------:|:-----------:|
-| Scene-agnostic  |reconstruction        |57.9%        |
-| **Scene-aware**   |**reconstruction + contrastive**        |**77.5%**        |
+| Scene-agnostic  |reconstruction        |61.3%        |
+| **Scene-aware**   |**reconstruction + contrastive**        |**79.0%**        |
 </details>
 
 <details>
@@ -44,23 +44,26 @@ In contrast, the proposed **scene-aware model** gives **higher anomaly scores** 
   
 | Aware     | Status                                                                | frame (160th) |Anomaly Score |
 |-----------|------------------------------------------------------------------------|-------|-------|
-| ❌ | **bicycle: normal**  | <img src="https://github.com/user-attachments/assets/bf046ade-09e0-4320-b53e-7946200526cf" width="400"/>  |<img src="https://github.com/user-attachments/assets/0c9566fb-205c-41d7-a5d0-4384b87bca8a" width="600"/>|
-| ✅ | **bicycle: normal**| <img src="https://github.com/user-attachments/assets/bf046ade-09e0-4320-b53e-7946200526cf" width="400"/>  |<img src="https://github.com/user-attachments/assets/d48304bb-7b72-4ebb-a5a4-6aa8004449c7" width="600"/>|
+| ❌ | **bicycle: normal**  | <img src="https://github.com/user-attachments/assets/bf046ade-09e0-4320-b53e-7946200526cf" width="400"/>  |<img src="https://github.com/user-attachments/assets/7dfe9dd6-0bec-479a-b2cb-5219e347d04d" width="600"/>|
+| ✅ | **bicycle: normal**| <img src="https://github.com/user-attachments/assets/bf046ade-09e0-4320-b53e-7946200526cf" width="400"/>  |<img src="https://github.com/user-attachments/assets/d6dddf75-b130-40ef-bb15-e7f07fa90ebf" width="600"/>|
+
 
 - **Scene 2 (normal: walking, standing, sitting)**
   
 | Aware     | Status                                                                | frame (130th) |Anomaly Score |
 |-----------|------------------------------------------------------------------------|-------|-------|
-| ❌ | **bicycle: abnormal**  | <img src="https://github.com/user-attachments/assets/69abefff-0712-4e10-848c-8266e3a38348" width="400"/>  |<img src="https://github.com/user-attachments/assets/0108f066-402d-4eda-b0fe-c3815bd86ddc" width="600"/>|
-| ✅ | **bicycle: abnormal**| <img src="https://github.com/user-attachments/assets/69abefff-0712-4e10-848c-8266e3a38348" width="400"/>  |<img src="https://github.com/user-attachments/assets/dd634e8f-6ad8-4db8-bc3d-1b09ee435cc9" width="600"/>|
+| ❌ | **bicycle: abnormal**  | <img src="https://github.com/user-attachments/assets/69abefff-0712-4e10-848c-8266e3a38348" width="400"/>  |<img src="https://github.com/user-attachments/assets/b8ba7763-2cff-466f-bceb-5fbd9a652e8d" width="600"/>|
+| ✅ | **bicycle: abnormal**| <img src="https://github.com/user-attachments/assets/69abefff-0712-4e10-848c-8266e3a38348" width="400"/>  |<img src="https://github.com/user-attachments/assets/036a281c-c6e4-4691-b792-cef480aa2504" width="600"/>|
+
 
 - **Scene 3 (normal: walking, standing, sitting)**
   
 | Aware     | Status                                                                | frame (160th) |Anomaly Score |
 |-----------|------------------------------------------------------------------------|-------|-------|
-| ❌ | **motorcycle: abnormal**  | <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/9237603e-06a2-480e-9ee8-01098a26ed94" width="600"/>|
-| ✅ | **motorcycle: abnormal**| <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/7a8c49ef-bf43-4051-8577-ddd7ea3e71ec" width="600"/>|
+| ❌ | **motorcycle: abnormal**  | <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/511e2229-45e0-4788-9f4e-c61fe146bb03" width="600"/>|
+| ✅ | **motorcycle: abnormal**| <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/058b659b-1e3d-45e7-aacb-e633adfb84a5" width="600"/>|
 </details>
+
 
 <details>
 <summary><b>Visualization</b></summary>
