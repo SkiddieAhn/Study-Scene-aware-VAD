@@ -23,7 +23,7 @@ This design makes it more difficult for the decoder to reconstruct those abnorma
   
 ## Quantitative  comparison
 To evaluate whether the model can effectively handle anomalies that vary depending on the scene, I utilize ```ShanghaiTech-SD```, a **scene-dependent dataset**. Details of the dataset can be found in the following paper [[Link](https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_A_New_Comprehensive_Benchmark_for_Semi-Supervised_Video_Anomaly_Detection_and_CVPR_2023_paper.pdf)].  
-Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **18.7% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
+Experimental results show that our proposed model, which learns to distinguish between different scenes, achieves a **17.7% higher AUC**. This improvement demonstrates that **scene-specific normal manifolds are appropriately constructed**, allowing the model to effectively detect **abnormal frames that violate scene semantics**—such as a bicycle on a pedestrian walkway.
 
 
 |     Method                  |Training  |AUC    |
