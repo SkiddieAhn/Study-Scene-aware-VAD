@@ -111,9 +111,9 @@ The **features** and **weights** directories should be moved to the ```working d
   
 ## Command
 For training, the ```segment length``` was set to **16**, and **30 video segments were used per scene** for contrastive learning.  
-The total number of videos used in contrastive learning is calculated as ```scenes × videos```.  
-For example, if there are **4 scenes and 30 video segments**, a total of **120 video segments** are used.  
-For each anchor, **29 videos** are used as **positives** and **90 videos** are used as **negatives**.
+The total number of segments used in contrastive learning is calculated as ```scenes × segments```.  
+For example, if there are **4 scenes and 30 segments**, a total of **120 segments** are used.  
+For each anchor, **29 segments** are used as **positives** and **90 segments** are used as **negatives**.
 - feature extraction
 ```bash
 python featuring.py --dataset=shanghai-sd --save_mode=training  # train data -> train features
