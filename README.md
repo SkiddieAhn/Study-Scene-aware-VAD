@@ -103,17 +103,17 @@ Please move the **dataset (shanghai-sd)** into the ```data_root``` directory spe
 The **features** and **weights** directories should be moved to the ```working directory```.
 |     Dataset    |  CLIP features    |   Weights    |  Train Log    | 
 |:------------------------:|:------------------------:|:------------------------:|:------------------------:|
-|[Google Drive](https://drive.google.com/file/d/1H5i-rBBlPZpk7Ix3TOR66rRY_2BtTMuD/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1R-wggWDWKF4usG6SoToUEretUTETba8r/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1ufs4JaGyS7jQWC2g473fMUux1rPWkT3L/view?usp=sharing)|[Google Colab](https://colab.research.google.com/drive/1xppcxRK-rifJsIV3jOT1J4IlspMKsW9v?usp=sharing)|
+|[Google Drive](https://drive.google.com/file/d/1H5i-rBBlPZpk7Ix3TOR66rRY_2BtTMuD/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1R-wggWDWKF4usG6SoToUEretUTETba8r/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1fW-OrFLqaZHIa2lb6d0QacSV9KM0uUnA/view?usp=sharing)|[Google Colab](https://colab.research.google.com/drive/1bLsA-coc6WOXPZsPm3wUyIEIl54DqzJp?usp=sharing)|
 </details>
 
 <details>
 <summary><b>Command</b></summary>
   
 ## Command
-For training, the ```segment length``` was set to **16**, and **10 videos were used per scene** for contrastive learning.  
+For training, the ```segment length``` was set to **16**, and **30 video segments were used per scene** for contrastive learning.  
 The total number of videos used in contrastive learning is calculated as ```scenes × videos```.  
-For example, if there are **4 scenes and 10 videos**, a total of **40 videos** are used.  
-For each anchor, **9 videos** are used as **positives** and **30 videos** are used as **negatives**.
+For example, if there are **4 scenes and 30 video segments**, a total of **120 video segments** are used.  
+For each anchor, **29 videos** are used as **positives** and **90 videos** are used as **negatives**.
 - feature extraction
 ```bash
 python featuring.py --dataset=shanghai-sd --save_mode=training  # train data -> train features
