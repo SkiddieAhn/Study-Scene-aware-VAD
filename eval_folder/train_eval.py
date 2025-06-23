@@ -36,7 +36,7 @@ def val_train_eval(cfg, model, iter, device):
             for clip in test_dataset:
                 clip = clip.unsqueeze(0).to(device)  # [1, T, D]
                 recon, _, _ = model(clip)     
-                mse = mse_error(recon, clip).detach().cpu()
+                mse = mse_error(recon, clip).detach().cpu() 
                 mse_list.extend([mse] * cfg.clip_length)
             mse_group.append(np.array(mse_list))
 
@@ -54,6 +54,7 @@ def val_train_eval(cfg, model, iter, device):
 
     # best auc with Gaussian smoothing
     best_auc = 0 
+    best_sigma = 0 
     for sigma in range(0, 20):
         if sigma > 0:
             g_preds = gaussian_filter1d(preds, sigma=sigma)
@@ -65,5 +66,7 @@ def val_train_eval(cfg, model, iter, device):
         if auc > best_auc:
             best_preds = nm_preds
             best_auc = auc
-    save_auc_result(cfg, save_dir, dataset_name, cfg.training_mode, iter, best_auc)
+            best_sigma = sigma
+
+    save_auc_result(cfg, save_dir, dataset_name, cfg.training_mode, iter, best_auc, best_sigma)
     return best_auc

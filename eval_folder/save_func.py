@@ -4,10 +4,11 @@ import os
 from fastprogress import progress_bar
 
 
-def save_auc_result(cfg, save_dir, dataset_name, training_mode, iter_num, best_auc):
-    auc_path = os.path.join(save_dir, f'{dataset_name}_auc_{training_mode}.txt')
+def save_auc_result(cfg, save_dir, dataset_name, training_mode, iter_num, best_auc, best_sigma):
+    auc_path = os.path.join(save_dir, f'{dataset_name}_auc_{training_mode}_{cfg.video_length}_{cfg.clip_length}.txt')
     with open(auc_path, 'a') as f:
-        f.write(f'[seed:{cfg.manualseed}] Iter {iter_num}: AUC = {best_auc:.4f}\n')
+        f.write(f'[seed:{cfg.manualseed}] [video_length:{cfg.video_length}] [clip_length:{cfg.clip_length}] Iter {iter_num}: AUC = {best_auc:.4f} | sigma = {best_sigma:.1f}\n')
+
 
 
 def save_score_auc_graph(answers_idx, scores, auc, file_path, x='Frame', y='Anomaly Score'):

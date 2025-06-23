@@ -15,7 +15,7 @@ class Trainer:
         self.dataset = dataset
         self.dataloader = dataloader
         self.model = model
-        self.cnt_loss, self.ce_loss, self.mse_loss, self.tp_loss = losses
+        self.cnt_loss, self.ce_loss, self.mse_loss = losses
         self.opt = opt
         self.iters = cfg.iters
         self.device = device
@@ -36,18 +36,9 @@ class Trainer:
         self.fit(cfg)
 
 
-    def update_dataset(self, indice, clip_length):
-        for index in indice:
-            self.dataset.all_seqs[index].pop()
-            length = len(self.dataset.all_seqs[index])
-            if length == 0:
-                self.dataset.all_seqs[index] = list(range(len(self.dataset.videos[index])-(clip_length-1)))
-                random.shuffle(self.dataset.all_seqs[index])
-
-
     def save_model(self, cfg):
         model_dict = make_models_dict(self.model, self.opt, self.iter_num+1)
-        save_path = f"{cfg.weight_path}/model_{cfg.dataset}_{cfg.training_mode}_{cfg.manualseed}_{self.iter_num+1}.pth"
+        save_path = f"{cfg.weight_path}/model_{cfg.dataset}_{cfg.training_mode}_{cfg.manualseed}_{cfg.video_length}_{cfg.clip_length}_{self.iter_num+1}.pth"
         torch.save(model_dict, save_path)
         print(f"\nAlready saved: \'{save_path}'.")
 
@@ -75,15 +66,13 @@ class Trainer:
         cnt_lv = self.cnt_loss(sfeature, self.scene_labels)
         ce_lv = self.ce_loss(logits, self.scene_labels)
         mse_lv = self.mse_loss(recon, input)
-        tp_lv = self.tp_loss(recon, input)
-        recon_lv = mse_lv + 0.1*tp_lv
 
         if mode == 0: 
-            total_lv = 2.0*recon_lv  
+            total_lv = 2.0*mse_lv  
         elif mode == 1: 
-            total_lv = 2.0*recon_lv + 1.0*cnt_lv 
+            total_lv = 2.0*mse_lv + 1.0*cnt_lv 
         elif mode == 2:
-            total_lv = 2.0*recon_lv + 1.0*cnt_lv + 0.1*ce_lv 
+            total_lv = 2.0*mse_lv + 1.0*cnt_lv + 0.05*ce_lv 
         else:
             raise ValueError(f"Unsupported mode: {mode}")
 
@@ -104,12 +93,8 @@ class Trainer:
 
         while self.Training:
             # one epoch
-            for indice, x in self.dataloader:
-                indice = torch.flatten(torch.cat(indice), -1) #[used video indice]
+            for x in self.dataloader:
                 x = x.view(-1, cfg.clip_length, cfg.embed_dim).to(self.device)  # [scene*pos, T, D]
-
-                # update dataset
-                self.update_dataset(indice, cfg.clip_length)
 
                 # calculate time
                 if self.iter_num > 0:

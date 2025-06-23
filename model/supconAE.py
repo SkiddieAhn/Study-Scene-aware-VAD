@@ -37,14 +37,13 @@ class SubconAE(nn.Module):
     def __init__(self, input_dim, hidden_dim, latent_dim, num_classes, num_layers=2, nhead=4):
         super().__init__()
         self.latent_dim = latent_dim
-
         self.pos_embedding = nn.Parameter(torch.randn(1, 512, input_dim))  # Max T=512
 
         self.encoder = TransformerEncoder(input_dim, hidden_dim, nhead, num_layers)
         self.decoder = TransformerDecoder(input_dim, hidden_dim, nhead, num_layers)
 
         self.proj_to_latent = nn.Linear(input_dim, latent_dim)
-        self.latent_to_org = nn.Linear(latent_dim, input_dim)
+        self.recon_to_org = nn.Linear(latent_dim, input_dim)
         self.output_proj = nn.Linear(input_dim, input_dim)
 
         self.classifier = nn.Sequential(
@@ -54,7 +53,7 @@ class SubconAE(nn.Module):
             nn.Linear(hidden_dim, num_classes)
         )
 
-    def forward(self, x, inference=False):
+    def forward(self, x):
         B, T, D = x.shape
         x = x + self.pos_embedding[:, :T, :]  # [B, T, D]
 
@@ -63,7 +62,7 @@ class SubconAE(nn.Module):
         z = self.proj_to_latent(enc_out)  # [B, T, latent_dim]
 
         # decoding
-        z_prime = self.latent_to_org(z)  # [B, T, D]
+        z_prime = self.recon_to_org(z)  # [B, T, D]
         dec = self.decoder(z_prime)  # [B, T, D]
         recon = self.output_proj(dec)  # [B, T, D]
 

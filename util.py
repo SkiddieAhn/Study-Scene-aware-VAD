@@ -39,15 +39,22 @@ def convert_clip_labels(labels, clip_length):
     return clip_labels
 
 
+def z_score(arr, eps=1e-8):
+    mean = np.mean(arr)
+    std_dev = np.std(arr) + eps  # Avoid division by zero
+    z_scores = (arr - mean) / std_dev
+    return z_scores
+
 
 def mse_error(pred, target):
-    # [1, T, D] → [T, D]
+    # [1, T, D] → [T, D] 
     if pred.dim() == 3 and pred.shape[0] == 1:
         pred = pred.squeeze(0)
     if target.dim() == 3 and target.shape[0] == 1:
         target = target.squeeze(0)
     mse_per_timestep = F.mse_loss(pred, target, reduction='none').mean(dim=1)
     return mse_per_timestep.max()
+
 
 # def mse_error(pred, target) :
 #     # [1, T, D] → [T, D]

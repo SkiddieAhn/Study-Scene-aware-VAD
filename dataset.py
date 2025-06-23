@@ -34,6 +34,15 @@ class TrainDatasetF():
                 random.shuffle(random_seq)
                 self.all_seqs.append(random_seq)
 
+    def load_seq_item(self, index):
+        item = self.all_seqs[index][-1]
+        self.all_seqs[index].pop()
+        length = len(self.all_seqs[index])
+        if length == 0:
+            self.all_seqs[index] = list(range(len(self.videos[index])-(self.clip_length-1)))
+            random.shuffle(self.all_seqs[index])
+        return item
+
     def scene_spliter(self):
         paths = sorted(glob.glob(f'{self.data_path}/*'))
         scene_indice_list = []
@@ -57,10 +66,13 @@ class TrainDatasetF():
         if batch_idx >= len(self):  
             raise IndexError(f"Invalid idx {batch_idx}, max={len(self)-1}")
 
-        scene_range = [self.scene_indice_list[batch_idx][0], self.scene_indice_list[batch_idx][1]-1]
+        scene_range = [self.scene_indice_list[batch_idx][0], self.scene_indice_list[batch_idx][1]-1] 
         indice = [random.randint(scene_range[0], scene_range[1]) for _ in range(self.video_length)]
-        videos = [self.videos[idx] for idx in indice]
-        start_arr = [self.all_seqs[idx][-1] for idx in indice]
+        videos = []
+        start_arr = []
+        for idx in indice:
+            videos.append(self.videos[idx])
+            start_arr.append(self.load_seq_item(idx))
 
         all_video_clip = []
         for v, video in enumerate(videos):
@@ -74,7 +86,7 @@ class TrainDatasetF():
             video_clip = torch.cat(video_clip, dim=0) # [clip_length, D]
             all_video_clip.append(video_clip)
         all_video_clip = torch.stack(all_video_clip) # [video_length, clip_length, D]
-        return indice, all_video_clip
+        return all_video_clip
 
 
 class DatasetF:

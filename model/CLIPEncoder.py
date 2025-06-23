@@ -3,7 +3,7 @@ import torch.nn as nn
 import clip
 
 class CLIPEncoder(nn.Module):
-    def __init__(self, network='ViT-L/14'):
+    def __init__(self, network='ViT-B/32'):
         super().__init__()
         self.clip_model, _ = clip.load(network, device='cuda')
         self.visual_model = self.clip_model.visual.float()

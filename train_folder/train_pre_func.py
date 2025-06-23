@@ -44,7 +44,7 @@ def print_infor(cfg, dataloader):
 
 
 def def_model(cfg, device):
-    model = SubconAE(input_dim=cfg.embed_dim, hidden_dim=256, latent_dim=128, num_classes=cfg.scene_length).to(device)
+    model = SubconAE(input_dim=cfg.embed_dim, hidden_dim=256, latent_dim=256, num_classes=cfg.scene_length).to(device)
     model.train()
     return model
 
@@ -53,8 +53,7 @@ def def_losses(cfg, device):
     cnt_loss = SupConLoss().to(device)
     ce_loss = CrossEntropyLoss().to(device)
     mse_loss = MSELoss().to(device)
-    tp_loss = TemporalLoss().to(device)
-    losses = [cnt_loss, ce_loss, mse_loss, tp_loss]
+    losses = [cnt_loss, ce_loss, mse_loss]
     return losses
 
 

@@ -33,7 +33,7 @@ def val(cfg, model=None, iter=None, device=None):
     ========================================
     '''
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") 
-    model = SubconAE(input_dim=cfg.embed_dim, hidden_dim=256, latent_dim=128, num_classes=cfg.scene_length).to(device)
+    model = SubconAE(input_dim=cfg.embed_dim, hidden_dim=256, latent_dim=256, num_classes=cfg.scene_length).to(device)
     model.eval()
 
     if cfg.trained_model:
