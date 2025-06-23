@@ -64,6 +64,26 @@ In contrast, the proposed **scene-aware model** gives **higher anomaly scores** 
 | ✅ | **motorcycle: abnormal**| <img src="https://github.com/user-attachments/assets/794894f8-a80d-49cb-b474-f3c22215e0ee" width="400"/>  |<img src="https://github.com/user-attachments/assets/058b659b-1e3d-45e7-aacb-e633adfb84a5" width="600"/>|
 </details>
 
+<details>
+<summary><b>VAD Performance Benchmarking</b></summary>
+  
+## VAD Performance Benchmarking
+Compared to existing state-of-the-art VAD methods, our approach achieves **superior performance** in most cases.  
+Although it shows slightly lower performance than Cao et al., it still delivers **competitive results without relying on object tracking**.  
+The combination of a ```powerful feature extractor``` and a ```lightweight AutoEncoder``` enables **efficient training and inference**, making the method well-suited for real-time applications or deployment in resource-constrained environments.  
+
+| Method                 | Feature | Scene-aware | AUC  |
+|------------------------|---------|-------------|------|
+| MemAE (ICCV'19)        | Image   | ❌          | 67.4 |
+| MNAD (CVPR'20)         | Image   | ❌          | 68.2 |
+| OG-Net (CVPR'20)       | Image   | ❌          | 69.6 |
+| AMMC-Net (AAAI'21)     | Image   | ❌          | 64.9 |
+| HF²-VAD (ICCV'21)      | Object  | ❌          | 70.8 |
+| MPN (CVPR'21)          | Image   | ❌          | 76.9 |
+| Cao et al. (CVPR'23)   | Object  | ✅          | 82.7 |
+| **Ours**               | **Image**  | ✅          | **79.0** |
+
+</details>
 
 <details>
 <summary><b>Visualization</b></summary>
