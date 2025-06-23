@@ -65,11 +65,25 @@ In contrast, the proposed **scene-aware model** gives **higher anomaly scores** 
 </details>
 
 <details>
+<summary><b>Visualization</b></summary>
+
+## Visualization
+To effectively visualize the **normal manifolds** of the **scene-agnostic** and **scene-aware** methods, I trained both approaches using a ```Variational AutoEncoder (VAE)```.
+While both methods produce features that follow a **normal distribution**, the proposed scene-aware method additionally shows clear **separation by scene**.  
+Incidentally, the proposed method also achieved better performance even with the VAE. However, for more stable training, I used an AutoEncoder, which resulted in even higher performance.
+
+|     Scene-agnostic manifold                |Scene-aware manifold  |
+|:------------------------:|:-----------:|
+| <img src="https://github.com/user-attachments/assets/75a1fef8-4683-4d2a-bea6-1c01209e814d" width="450"/>| <img src="https://github.com/user-attachments/assets/94c34176-e198-4efb-9c4a-6ac576f4baf2" width="450"/>|
+</details>
+
+<details>
 <summary><b>VAD Performance Benchmarking</b></summary>
   
 ## VAD Performance Benchmarking
 Compared to existing state-of-the-art VAD methods, our approach achieves **superior performance** in most cases.  
-Although it shows slightly lower performance than Cao et al., it still delivers **competitive results without relying on object tracking**.  
+This is attributed to the incorporation of a **scene-aware mechanism**, which allows the model to learn **scene-specific normal patterns**.       
+Although it shows slightly lower performance than Cao et al., it still delivers **competitive results without relying on object detection**.  
 The combination of a ```powerful feature extractor``` and a ```lightweight AutoEncoder``` enables **efficient training and inference**, making the method well-suited for real-time applications or deployment in resource-constrained environments.  
 
 | Method                 | Feature | Scene-aware | AUC  |
@@ -83,19 +97,6 @@ The combination of a ```powerful feature extractor``` and a ```lightweight AutoE
 | Cao et al. (CVPR'23)   | Object  | ✅          | 82.7 |
 | **Ours**               | **Image**  | ✅          | **79.0** |
 
-</details>
-
-<details>
-<summary><b>Visualization</b></summary>
-
-## Visualization
-To effectively visualize the **normal manifolds** of the **scene-agnostic** and **scene-aware** methods, I trained both approaches using a ```Variational AutoEncoder (VAE)```.
-While both methods produce features that follow a **normal distribution**, the proposed scene-aware method additionally shows clear **separation by scene**.  
-Incidentally, the proposed method also achieved better performance even with the VAE. However, for more stable training, I used an AutoEncoder, which resulted in even higher performance.
-
-|     Scene-agnostic manifold                |Scene-aware manifold  |
-|:------------------------:|:-----------:|
-| <img src="https://github.com/user-attachments/assets/75a1fef8-4683-4d2a-bea6-1c01209e814d" width="450"/>| <img src="https://github.com/user-attachments/assets/94c34176-e198-4efb-9c4a-6ac576f4baf2" width="450"/>|
 </details>
 
 ## Execution
