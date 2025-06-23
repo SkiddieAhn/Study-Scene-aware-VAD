@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--save_interval', default=1000, type=int)
     parser.add_argument('--manualseed', default=-1, type=int, help='manual seed')
     parser.add_argument('--scene_length', default=4, type=int, help='number of scenes in dataset')
-    parser.add_argument('--video_length', default=30, type=int, help='number of positive video segments(clips)')
+    parser.add_argument('--video_length', default=30, type=int, help='number of video segments(clips) per scene')
     parser.add_argument('--clip_length', default=16, type=int, help='number of frames in segment(clip)')
     parser.add_argument('--training_mode', default=1, type=int, help='0: recon, 1: recon+cnt, 2: recon+cnt+ce')
 
