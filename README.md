@@ -86,7 +86,7 @@ This is attributed to the incorporation of a **scene-aware mechanism**, which al
 Although it shows slightly lower performance than Cao et al., it still delivers **competitive results without relying on object detection**.  
 The combination of a ```powerful feature extractor``` and a ```lightweight AutoEncoder``` enables **efficient training and inference**, making the method well-suited for real-time applications or deployment in resource-constrained environments.  
 
-| Method                 | Feature | Scene-aware | AUC  |
+| Method                 | Input | Scene-aware | AUC  |
 |------------------------|---------|-------------|------|
 | MemAE (ICCV'19)        | Image   | ❌          | 67.4 |
 | MNAD (CVPR'20)         | Image   | ❌          | 68.2 |
@@ -94,7 +94,7 @@ The combination of a ```powerful feature extractor``` and a ```lightweight AutoE
 | AMMC-Net (AAAI'21)     | Image   | ❌          | 64.9 |
 | HF²-VAD (ICCV'21)      | Object  | ❌          | 70.8 |
 | MPN (CVPR'21)          | Image   | ❌          | 76.9 |
-| Cao et al. (CVPR'23)   | Object  | ✅          | 82.7 |
+| Cao et al. (CVPR'23)   | Object +BG | ✅          | 82.7 |
 | **Proposed**               | **Image**  | ✅          | **79.0** |
 
 </details>
