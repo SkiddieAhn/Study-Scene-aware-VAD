@@ -83,7 +83,7 @@ Incidentally, the proposed method also achieved better performance even with the
 ## VAD Performance Benchmarking
 Compared to existing state-of-the-art VAD methods, my approach achieves **superior performance** in most cases.  
 This is attributed to the incorporation of a **scene-aware mechanism**, which allows the model to learn **scene-specific normal patterns** (e.g., a bicycle is normal only in scene 1).         
-Although it shows slightly lower performance than Cao et al., it still delivers **competitive results without relying on object detection**.  
+Although it shows slightly lower performance than Cao et al., it still delivers **competitive results without relying on object detection or background subtraction**.  
 The combination of a ```powerful feature extractor``` and a ```lightweight AutoEncoder``` enables **efficient training and inference**, making the method well-suited for real-time applications or deployment in resource-constrained environments.  
 
 | Method                 | Input | Scene-aware | AUC  |
