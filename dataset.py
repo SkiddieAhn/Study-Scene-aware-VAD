@@ -21,27 +21,35 @@ class TrainDatasetF():
         self.data_path = f'features/{cfg.dataset}/frame/training'
         self.scene_indice_list = self.scene_spliter()
         self.scene_total = len(self.scene_indice_list)
+
         self.videos = []
+        self.video_num_frames = []
         self.all_seqs = []
+
         self.clip_length = cfg.clip_length
         self.video_length = cfg.video_length
 
         for file in sorted(glob.glob(f'{self.data_path}/*')):
             with h5py.File(file, 'r') as v_features:
-                self.videos.append(file)
                 all_fts = sorted(list(v_features.keys()))
-                random_seq = list(range(len(all_fts)-(self.clip_length-1)))
-                random.shuffle(random_seq)
-                self.all_seqs.append(random_seq)
+                num_frames = len(all_fts)
+
+            if num_frames < self.clip_length:
+                continue
+
+            self.videos.append(file)
+            self.video_num_frames.append(num_frames)
+
+            random_seq = list(range(num_frames - self.clip_length + 1))
+            random.shuffle(random_seq)
+            self.all_seqs.append(random_seq)
 
     def load_seq_item(self, index):
-        item = self.all_seqs[index][-1]
-        self.all_seqs[index].pop()
-        length = len(self.all_seqs[index])
-        if length == 0:
-            self.all_seqs[index] = list(range(len(self.videos[index])-(self.clip_length-1)))
+        if len(self.all_seqs[index]) == 0:
+            num_frames = self.video_num_frames[index]
+            self.all_seqs[index] = list(range(num_frames - self.clip_length + 1))
             random.shuffle(self.all_seqs[index])
-        return item
+        return self.all_seqs[index].pop()
 
     def scene_spliter(self):
         paths = sorted(glob.glob(f'{self.data_path}/*'))
